@@ -44,16 +44,36 @@ class Circle {
         line.setAttribute('y2', this.cy + this.radius * Math.sin(a2));
         line.setAttribute('stroke', '#000');
         line.setAttribute('stroke-width', 2);
+        line.setAttribute('id', `line_${angle1}_${angle2}`);
         svg.appendChild(line);
     }
 
-    removePoint(angle){
+    // une facon de faire le remove
+    /*removePoint(angle){
         console.log('removePoint');
         const toBeRemoved = document.querySelector(`#point_${angle}`);
         if (toBeRemoved){
             toBeRemoved.outerHTML = "";
         }
+    }*/
+
+    //try / catch
+    removePoint(angle){
+        try{
+            document.querySelector(`#point_${angle}`).outerHTML = "";;
+        } catch(e){
+            console.error(e);
+        }
     }
+
+    removeLine(angle1, angle2){
+        try{
+            document.querySelector(`#line_${angle1}_${angle2}`).outerHTML = "";;
+        } catch(e){
+            console.error(e);
+        }
+    }
+
 }
 
 function main(){
@@ -68,6 +88,7 @@ function main(){
     c.setLine(30,90);
     setTimeout(function(){
         c.removePoint(60);
+        c.removeLine(30, 90);
     }, 1000);
 }
 
