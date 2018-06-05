@@ -10,22 +10,24 @@
 }*/
 
 //Async
-function sleep(delay) {
+/*function sleep(delay) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve();
         }, delay);
     });
-}
+}*/
 
-async function main(){
-    for (let i = 0; i < 30; i++){
-        const m = new Multiply(i, 2);
+const sleep = d => new Promise(r => setTimeout(r, d));
+
+(async function main(){
+    'use strict';
+
+    for (let i = 0; i < 65; i++){
+        const m = new Multiply(i, 5);
         m.draw();
         await sleep(16);
     }
-}
-
-main();
+})();
 
 //16 = rail performance
